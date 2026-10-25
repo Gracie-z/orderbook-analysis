@@ -44,7 +44,7 @@ Timestamps are Unix microseconds, interpreted in Shanghai time. Prices are assum
 
 Use 09:30–11:30 and 13:00–15:00 for model sampling. Match quotes backward in time and reject snapshots older than five seconds. Keep missing quotes separate from zero trading volume.
 
-All stocks share a chronological 60%/40% train/test split, with inner validation for tuning. Purge overlapping ten-second targets at both boundaries and fit scaling on training data only.
+All stocks share a chronological 60%/40% train/test split, with inner validation for tuning. Purge overlapping ten-second targets at both boundaries. `ColumnTransformer` and `Pipeline` fit stock encoding and scaling on inner training during tuning, then refit on full training before testing.
 
 One day cannot establish stability across days. Tick direction estimates aggressor side; quoted spreads and model errors do not establish executable trading profits.
 
